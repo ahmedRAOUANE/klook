@@ -1,17 +1,23 @@
-
-import { Container, Box, Link, styled, List, ListItem, ListItemLink } from "@mui/material";
+import { Container, Box, List, ListItem, ListItemButton, styled } from "@mui/material";
+import {Link} from 'react-router-dom';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import SearchInput from "./SearchInput";
 import SearchIcon from '@mui/icons-material/Search';
+import { useState } from "react";
+import Popup from "./Popup";
+import Language from "./Language";
 
-const SearchInput = styled("div")(() => ({
-    marginLeft: "20px",
+const Input = styled("div")(() => ({
+    width: "280px",
     backgroundColor: "#f5f5f5",
-    padding: "10px",
+    padding: "7px",
     borderRadius: "20px",
     display: "flex",
     alignItems: "center",
     '& > input':{
         backgroundColor: "#f5f5f5",
         border: "none",
+        width: "100%"
     },
     '& > input:focus': {
         outline: "none",
@@ -19,11 +25,18 @@ const SearchInput = styled("div")(() => ({
 }))
 
 const Navbar = () => {
+
+    const [popup, setPopup] = useState('close');
+
+    const popupType = (type) => {
+        setPopup(`open-${type}`);
+    }
+
     return (
-        <Box>
-            <Container sx={{display: "flex", alignItems: "center", my: "10px"}}>
-                <div  style={{display: "flex", alignItems: "center"}}>
-                    <Link>
+        <Box sx={{borderBottom: "1px solid #eee"}}>
+            <Container sx={{display: "flex", alignItems: "center", justifyContent: "space-between", my: "5px"}}>
+                <div style={{display: "flex", alignItems: "center"}}>
+                    <Link to="/" style={{marginRight: "20px"}}>
                         <svg 
                             xmlns="http://www.w3.org/2000/svg" 
                             width="115" 
@@ -38,35 +51,71 @@ const Navbar = () => {
                             </g>
                         </svg>
                     </Link>
-                    <SearchInput >
+                    <Input >
                         <SearchIcon />
-                        <input type="search" placeholder="search" />
-                    </SearchInput>
+                        <input type="serch" placeholder="search" onClick={() => popupType("search")} />
+                    </Input>
                 </div>
-                <div>
-                    <List>
-                        <ListItem>
-                            <ListItemLink>link</ListItemLink>
+                <List sx={{ 
+                    display: "flex", 
+                    alignItems:"center", 
+                    fontSize: "12px", 
+                    fontWeight: "500", 
+                    "& > li": {padding: 0, width: "auto", mx: "2px"},
+                    "& a": {textDecoration: "none"}, 
+                    "& div": { padding: "0 10px", borderRadius: "20px", display: "flex", alignItems:"center", height: "36px"}, 
+                    }}
+                >
+                    <ListItem onClick={() => popupType("language")}>
+                        <ListItemButton>
+                            <svg 
+                                viewBox="0 0 18 12" 
+                                width="22" height="22"
+                            >
+                                <g 
+                                    fill="none" 
+                                    fillRule="evenodd"
+                                >
+                                    <path 
+                                        fill="#5A91E5" 
+                                        d="M0 0h18v12H0z"
+                                    >
+                                    </path>
+                                    <path 
+                                        fill="#FFF" 
+                                        fillRule="nonzero" 
+                                        d="M9 2.25C6.93 2.25 5.25 3.93 5.25 6c0 2.07 1.68 3.75 3.75 3.75 2.07 0 3.75-1.68 3.75-3.75 0-2.07-1.68-3.75-3.75-3.75zm3.18 3.472h-.972c-.041-1.028-.32-1.93-.75-2.555a3.176 3.176 0 011.723 2.555zM8.723 2.847v2.875H7.347c.056-1.43.64-2.625 1.375-2.875zm0 3.43v2.876c-.736-.25-1.32-1.445-1.375-2.875h1.375zm.556 2.876V6.278h1.375c-.056 1.43-.64 2.625-1.375 2.875zm0-3.43V2.846c.736.25 1.32 1.445 1.375 2.875H9.278zm-1.75-2.556c-.43.625-.709 1.527-.75 2.555h-.972a3.238 3.238 0 011.722-2.555zm-1.709 3.11h.973c.041 1.029.32 1.931.75 2.556a3.176 3.176 0 01-1.723-2.555zm4.653 2.556c.43-.625.709-1.527.75-2.555h.972a3.238 3.238 0 01-1.722 2.555z"
+                                    ></path>
+                                </g>
+                            </svg>
+                            <ArrowDropDownIcon />
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem onClick={() => popupType("currencies")}>
+                        <ListItemButton>
+                            USD
+                            <ArrowDropDownIcon />
+                        </ListItemButton>
+                    </ListItem>
+                    {["Go To App", "Help", "Recently Viewed", "Sign up", "log in"].map(link => (
+                        <ListItem key={link}>
+                            <ListItemButton sx={{
+                                backgroundColor: link === "log in" ? "#ff5b00" : "",
+                                "&:hover": {backgroundColor: link === "log in" ? "#ff5b00" : ""},
+                                "& a": {color: link === "log in" ? "#fff" : "#000"},
+                            }}
+                            >
+                                <Link to={link}>
+                                    {link}
+                                </Link>
+                            </ListItemButton>
                         </ListItem>
-                        <ListItem>
-                            <ListItemLink>link</ListItemLink>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemLink>link</ListItemLink>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemLink>link</ListItemLink>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemLink>link</ListItemLink>
-                        </ListItem>
-                    </List>
-                </div>
+                    ))}
+                </List>
             </Container>
+            <Popup type={popup} />
         </Box>
     )
 }
 
 export default Navbar;
-
-/// type invalid chech Navbar.jsx
