@@ -1,7 +1,6 @@
-import { Container, Box, styled, List, ListItem, ListItemButton } from "@mui/material";
+import { styled } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import { useState } from "react";
-import HotArea from "./HotArea"
+import HotArea from "./HotArea";
 
 const Input = styled("div")(() => ({
     width: "280px",
@@ -20,30 +19,26 @@ const Input = styled("div")(() => ({
     }
 }))
 
-const SearchInput = ({openPopup, closePopup}) => {
-
-    const [popup, setPopup] = useState('close')
-
-    openPopup();
+const SearchInput = ({closePopup}) => {
 
     return (
         <>
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                    <Input >
-                        <SearchIcon />
-                        <input type="serch" placeholder="search" onClick={openPopup} />
-                    </Input>
-                    <button style={{
-                        borderRadius: "20px",
-                        border: "none",
-                        padding: "10px 20px",
-                        cursor: "pointer"
-                    }} onClick={closePopup}>Close</button>
-                </div>
-                <div style={{display: 'flex', justifyContent: 'space-between', marginTop: "20px", gap: "20px", height: "100%"}}>
-                    <HotArea />
-                    <HotArea />
-                </div>
+                <Input >
+                    <SearchIcon />
+                    <input type="serch" placeholder="search" />
+                </Input>
+                <button style={{
+                    borderRadius: "20px",
+                    border: "none",
+                    padding: "10px 20px",
+                    cursor: "pointer"
+                }} onClick={closePopup}>Close</button>
+            </div>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginTop: "20px", gap: "20px", height: "100%"}}>
+                <HotArea />
+                <HotArea />
+            </div>
         </>
     )
 }
