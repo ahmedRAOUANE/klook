@@ -1,5 +1,9 @@
 import { styled } from "@mui/material";
+
+// icons
 import SearchIcon from '@mui/icons-material/Search';
+
+// components
 import HotArea from "./HotArea";
 
 const Input = styled("div")(() => ({
