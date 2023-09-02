@@ -1,5 +1,5 @@
-
-import { useTheme, Box, MobileStepper, Paper, Typography, Button } from '@mui/material/Button';
+import React from 'react';
+import { useTheme, Box, MobileStepper, Paper, Typography, Button } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
@@ -30,7 +30,7 @@ const images = [
   },
 ];
 
-function SwipeableTextMobileStepper() {
+const MainBanner = () => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
@@ -120,4 +120,4 @@ function SwipeableTextMobileStepper() {
   );
 }
 
-export default SwipeableTextMobileStepper;
+export default MainBanner;
