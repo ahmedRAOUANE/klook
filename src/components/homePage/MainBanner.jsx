@@ -1,11 +1,14 @@
-import React from 'react';
-import { useTheme, Box, MobileStepper, Paper, Typography, Button } from '@mui/material';
+import React, {useState} from 'react';
+import { useTheme, Box, Typography, Button, Container } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
+// import SwipeableViews from 'react-swipeable-views';
+// import { autoPlay } from 'react-swipeable-views-utils';
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+import HeroSlider, {Slide} from 'hero-slider';
+import Background from 'hero-slider/dist/components/Slide/Background';
+
+// const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
@@ -31,91 +34,92 @@ const images = [
 ];
 
 const MainBanner = () => {
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
   };
 
-  const handleStepChange = (step) => {
-    setActiveStep(step);
-  };
+  setTimeout(() => {
+    nextImage();
+  }, 2000)
 
   return (
-    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-      <Paper
-        square
-        elevation={0}
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          height: 50,
-          pl: 2,
-          bgcolor: 'background.default',
+    <Box>
+      {/* <HeroSlider
+        slidingAnimation='left_to_right'
+        orientation='horizontal'
+        initialSlide={1}
+        onBeforeChane={(prevImage, nextImage) => console.log('onbeforechange', prevImage, nextImage)}
+        onChane={(nextImage) => console.log('onchange', nextImage)}
+        onAfterChane={(nextImage) => console.log('onAfterchange', nextImage)}
+        settings={{
+          slidingDuration: 250,
+          slidingDelay: 100,
+          shouldAutoPlay: true,
+          shouldDisplayButtons: true,
+          autoPlayDuration: 5000,
+          height: '70vh',
+          width: '100%'
+        }}
+        style={{
+          height: '70vh'
         }}
       >
-        <Typography>{images[activeStep].label}</Typography>
-      </Paper>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {images.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                component="img"
-                sx={{
-                  height: 255,
-                  display: 'block',
-                  maxWidth: 400,
-                  overflow: 'hidden',
-                  width: '100%',
-                }}
-                src={step.imgPath}
-                alt={step.label}
-              />
-            ) : null}
-          </div>
+        {images.map((slide) => (
+          <Slide 
+            Background={{BackgroundImage:`url(${slide.imgPath})`}}
+          />
         ))}
-      </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
+      </HeroSlider> */}
+      {/* <Container sx={{position: 'absolute', top: '50%', transform: 'translateY(-50%)', zIndex: '3', color: '#fff'}}>
+        <Typography variant='h2' component={'h3'}>Your world of joy</Typography>
+        <Typography variant='h5' component={'p'}>From local escapes to far-flung adventures, find what makes you happy anytime, anywhere</Typography>
+      </Container>
+      <Box style={{position: 'absolute', left: '0', width:'100%', height:'70vh'}}>
+        <div style={{display: 'flex', overflow: 'scroll', height: '100%', width: '100%', position: 'relative'}}>
+            <div style={{width: '100%', position: 'absolute'}}>
+              <img style={{width: '100%', maxHeight: '100%'}} src={images[currentImageIndex].imgPath} />
+            </div>
+        </div>
+        <div style={{
+          position: 'absolute', 
+          width: '100%', 
+          top: '50%', 
+          transform: 'translateY(-50%)', 
+          zIndex: '3', display: 'flex', 
+          justifyContent: 'space-between',
+          height: '100%'
+          }}
+        >
+          <Button style={{
+              height: '100%',
+              backgroundImage: 'linear-gradient(90deg, #000000a1, transparent)',
+              color: '#fff'
+            }}
+            onClick={prevImage}
           >
-            Next
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
+            <KeyboardArrowLeft />
           </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            Back
+          <Button style={{
+              height: '100%',
+              backgroundImage: 'linear-gradient(-90deg, #000000a1, transparent)',
+              color: '#fff'
+            }}
+            onClick={nextImage}
+          >
+            <KeyboardArrowRight />
           </Button>
-        }
-      />
+        </div>
+      </Box> */}
     </Box>
   );
 }

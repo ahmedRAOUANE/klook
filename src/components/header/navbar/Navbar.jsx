@@ -36,7 +36,7 @@ const customStyles = {
         borderRadius: "20px",
         position: "absolute",
         inset: "9% 0 0 50%",
-        height: "60%",
+        height: "70%",
         width: "60%",
         transform: "translateX(-50%)",
         border: "none",

@@ -39,7 +39,7 @@ const SearchInput = ({closePopup}) => {
                     cursor: "pointer"
                 }} onClick={closePopup}>Close</button>
             </div>
-            <div style={{display: 'flex', justifyContent: 'space-between', marginTop: "20px", gap: "20px", height: "100%"}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginTop: "20px", gap: "20px"}}>
                 <HotArea />
                 <HotArea />
             </div>
