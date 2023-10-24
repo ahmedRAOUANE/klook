@@ -1,127 +1,127 @@
-import React, {useState} from 'react';
-import { useTheme, Box, Typography, Button, Container } from '@mui/material';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-// import SwipeableViews from 'react-swipeable-views';
-// import { autoPlay } from 'react-swipeable-views-utils';
+// react 
+import React, {useState, useEffect} from 'react';
 
-import HeroSlider, {Slide} from 'hero-slider';
-import Background from 'hero-slider/dist/components/Slide/Background';
+// mui components
+import { Container } from '@mui/material';
 
-// const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+// mui icons
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
+const btnStyle = {
+  position: 'absolute',
+  height: '100%',
+  border: 'none',
+  zIndex: 1,
+  cursor: 'pointer',
+  backgroundColor: 'transparent',
+  width: '60px'
+}
 
 const images = [
   {
     label: 'San Francisco – Oakland Bay Bridge, United States',
     imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577678/banner/tvhfgpkiapfldzoaj8ll.webp',
   },
   {
     label: 'Bird',
     imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577664/banner/rtw7fgqatgoc1vpcpamb.webp',
   },
   {
     label: 'Bali, Indonesia',
     imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
+      'https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577678/banner/tvhfgpkiapfldzoaj8ll.webp',
   },
   {
     label: 'Goč, Serbia',
     imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577664/banner/rtw7fgqatgoc1vpcpamb.webp',
   },
 ];
 
 const MainBanner = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const updatedImgs = images.map((img, idx) => ({
+    ...img, 
+    active: idx === currentIndex
+  }))
 
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+    
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  setTimeout(() => {
-    nextImage();
-  }, 2000)
+  const nextHandler = () => {
+    setCurrentIndex((currentIndex + 1) % images.length);
+  }
+  
+  const prevHandler = () => {
+    setCurrentIndex((currentIndex - 1 + images.length) % images.length);
+  }
 
   return (
-    <Box>
-      {/* <HeroSlider
-        slidingAnimation='left_to_right'
-        orientation='horizontal'
-        initialSlide={1}
-        onBeforeChane={(prevImage, nextImage) => console.log('onbeforechange', prevImage, nextImage)}
-        onChane={(nextImage) => console.log('onchange', nextImage)}
-        onAfterChane={(nextImage) => console.log('onAfterchange', nextImage)}
-        settings={{
-          slidingDuration: 250,
-          slidingDelay: 100,
-          shouldAutoPlay: true,
-          shouldDisplayButtons: true,
-          autoPlayDuration: 5000,
-          height: '70vh',
-          width: '100%'
-        }}
-        style={{
-          height: '70vh'
-        }}
-      >
-        {images.map((slide) => (
-          <Slide 
-            Background={{BackgroundImage:`url(${slide.imgPath})`}}
-          />
-        ))}
-      </HeroSlider> */}
-      {/* <Container sx={{position: 'absolute', top: '50%', transform: 'translateY(-50%)', zIndex: '3', color: '#fff'}}>
-        <Typography variant='h2' component={'h3'}>Your world of joy</Typography>
-        <Typography variant='h5' component={'p'}>From local escapes to far-flung adventures, find what makes you happy anytime, anywhere</Typography>
-      </Container>
-      <Box style={{position: 'absolute', left: '0', width:'100%', height:'70vh'}}>
-        <div style={{display: 'flex', overflow: 'scroll', height: '100%', width: '100%', position: 'relative'}}>
-            <div style={{width: '100%', position: 'absolute'}}>
-              <img style={{width: '100%', maxHeight: '100%'}} src={images[currentImageIndex].imgPath} />
-            </div>
-        </div>
+    <div style={{width: '100%'}}>
+      <div className="carousel" style={{
+        height: '400px',
+        display: 'flex', 
+        position: 'relative'
+        }}>
+        <button 
+          style={{
+            ...btnStyle,
+            backgroundImage: 'linear-gradient(90deg, #00000072, transparent)',
+          }}
+          onClick={prevHandler}
+        ><ArrowBackIosIcon /></button>
         <div style={{
-          position: 'absolute', 
-          width: '100%', 
-          top: '50%', 
-          transform: 'translateY(-50%)', 
-          zIndex: '3', display: 'flex', 
-          justifyContent: 'space-between',
-          height: '100%'
+            width: '100%',
+            height: '100%',
+            display: 'flex', 
           }}
         >
-          <Button style={{
+          {updatedImgs.map((img) => (
+            <div key={img.label} className={`swiper-slide`} style={{
+              backgroundImage: `url(${img.imgPath})`, 
+              backgroundRepeat: 'no-repeat',
+              width: `${img.active ? '100%' : '0'}`, 
               height: '100%',
-              backgroundImage: 'linear-gradient(90deg, #000000a1, transparent)',
-              color: '#fff'
-            }}
-            onClick={prevImage}
-          >
-            <KeyboardArrowLeft />
-          </Button>
-          <Button style={{
-              height: '100%',
-              backgroundImage: 'linear-gradient(-90deg, #000000a1, transparent)',
-              color: '#fff'
-            }}
-            onClick={nextImage}
-          >
-            <KeyboardArrowRight />
-          </Button>
+              position: 'relative',
+              WebkitBackgroundSize: 'cover',
+              transition: 'width 0.6s ease-out'
+            }}></div>
+          ))}
         </div>
-      </Box> */}
-    </Box>
+        <button style={{
+          ...btnStyle,
+          right: 0,
+          backgroundImage: 'linear-gradient(-90deg, #00000072, transparent)',
+        }} 
+          onClick={nextHandler}
+        ><ArrowForwardIosIcon /></button>
+      </div>
+      <Container>
+        <div 
+        className="text" 
+        style={{
+          position: 'absolute', 
+          top: '35%', 
+          color: '#fff',
+          zIndex: 2
+        }}
+      >
+        <h2 style={{fontSize: '50px', letterSpacing: '2px'}}>Your world of joy</h2>
+        <p style={{fontSize: '25px', letterSpacing: '2px'}}>From local escapes to far-flung adventures, find what makes you happy anytime, anywhere</p>
+      </div>
+      </Container>
+    </div>
   );
-}
+};
 
 export default MainBanner;
