@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 
 // icons
-import { icons } from '../../icons';
+import { icons } from '../icons';
 
 
 const languages = [

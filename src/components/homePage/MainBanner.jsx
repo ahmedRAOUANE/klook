@@ -1,5 +1,6 @@
 // react 
 import React, {useState, useEffect} from 'react';
+import GetData from "../GetData"
 
 // mui components
 import { Container } from '@mui/material';
@@ -18,60 +19,41 @@ const btnStyle = {
   width: '60px'
 }
 
-const images = [
-  {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
-    imgPath:
-      'https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577678/banner/tvhfgpkiapfldzoaj8ll.webp',
-  },
-  {
-    label: 'Bird',
-    imgPath:
-      'https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577664/banner/rtw7fgqatgoc1vpcpamb.webp',
-  },
-  {
-    label: 'Bali, Indonesia',
-    imgPath:
-      'https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577678/banner/tvhfgpkiapfldzoaj8ll.webp',
-  },
-  {
-    label: 'Goč, Serbia',
-    imgPath:
-      'https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577664/banner/rtw7fgqatgoc1vpcpamb.webp',
-  },
-];
-
 const MainBanner = () => {
+  const data = GetData("mainBunner");
   const [currentIndex, setCurrentIndex] = useState(0);
-  const updatedImgs = images.map((img, idx) => ({
+
+  const updatedImgs = data.map((img, idx) => ({
     ...img, 
     active: idx === currentIndex
   }))
 
+  console.log(data);
+
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % updatedImgs.length);
     }, 3000);
     
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [data]);
 
   const nextHandler = () => {
-    setCurrentIndex((currentIndex + 1) % images.length);
+    setCurrentIndex((currentIndex + 1) % updatedImgs.length);
   }
   
   const prevHandler = () => {
-    setCurrentIndex((currentIndex - 1 + images.length) % images.length);
+    setCurrentIndex((currentIndex - 1 + updatedImgs.length) % updatedImgs.length);
   }
 
   return (
-    <div style={{width: '100%'}}>
+    <div style={{ width: '100%', position: 'relative' }}>
       <div className="carousel" style={{
         height: '400px',
         display: 'flex', 
-        position: 'relative'
+        
         }}>
         <button 
           style={{
@@ -111,9 +93,8 @@ const MainBanner = () => {
         className="text" 
         style={{
           position: 'absolute', 
-          top: '35%', 
-          color: '#fff',
-          zIndex: 2
+          top: '20%', 
+          color: '#fff'
         }}
       >
         <h2 style={{fontSize: '50px', letterSpacing: '2px'}}>Your world of joy</h2>

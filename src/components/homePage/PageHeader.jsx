@@ -2,7 +2,17 @@ import { Box, Button, Container, List, ListItem, ListItemButton, Typography } fr
 
 const PageHeader = () => {
     return (
-        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 0}}>
+        <Container
+            sx={{
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'space-between',
+                padding: 0,
+                "@media(max-width: 767px)": {
+                    display: 'none'
+                }
+                }}
+        >
             <List sx={{ 
                 display: "flex", 
                 alignItems:"center",
@@ -29,7 +39,7 @@ const PageHeader = () => {
                     <Typography>Gift cards</Typography>
                 </Button>
             </Box>
-        </Box>
+        </Container>
     )
 }
 

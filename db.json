@@ -1,0 +1,151 @@
+{
+    "mainBunner": [
+        {
+            "id": 1,
+            "label": "San Francisco - Oakland Bay Bridge, United States",
+            "imgPath": "https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577678/banner/tvhfgpkiapfldzoaj8ll.webp"
+        },
+        {
+            "id": 2,
+            "label": "Bird",
+            "imgPath": "https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577664/banner/rtw7fgqatgoc1vpcpamb.webp"
+        },
+        {
+            "id": 3,
+            "label": "Bali, Indonesia",
+            "imgPath": "https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577678/banner/tvhfgpkiapfldzoaj8ll.webp"
+        },
+        {
+            "id": 4,
+            "label": "Goč, Serbia",
+            "imgPath": "https://res.klook.com/image/upload/fl_lossy.progressive,q_90/c_fill,,w_2560,/v1670577664/banner/rtw7fgqatgoc1vpcpamb.webp"
+        }
+    ],
+    "why": [
+        {
+            "img": "https://res.klook.com/image/upload/fl_lossy.progressive,q_85/c_fill,w_112,h_112/v1663655841/ued/platform/Discover_the_possibilities.webp",
+            "title": "Discover the possibilities",
+            "desc": "With nearly half a million attractions, hotels & more, you're sure to find joy."
+        },
+        {
+            "img": "https://res.klook.com/image/upload/fl_lossy.progressive,q_85/c_fill,w_112,h_112/v1663655837/ued/platform/Enjoy_deals_delights.webp",
+            "title": "Enjoy deals & delights",
+            "desc": "Quality activities. Great prices. Plus, earn Klook credits to save more."
+        },
+        {
+            "img": "https://res.klook.com/image/upload/fl_lossy.progressive,q_85/c_fill,w_112,h_112/v1663655837/ued/platform/Exploring_made_easy.webp",
+            "title": "Exploring made easy",
+            "desc": "Book last minute, skip lines & get free cancellation for easier exploring."
+        },
+        {
+            "img": "https://res.klook.com/image/upload/fl_lossy.progressive,q_85/c_fill,w_112,h_112/v1663655837/ued/platform/Travel_you_can_trust.webp",
+            "title": "Travel you can trust",
+            "desc": "Read reviews & get reliable customer support. We're with you at every step."
+        }
+    ],
+    "activities": [
+        {
+            "img": "https://res.klook.com/image/upload/fl_lossy.progressive,w_500,h_334,c_fill,q_85/activities/nixsztvag2eowqd9aivp.webp",
+            "subTxt": "rail passes",
+            "title": "JR pass for whole japan",
+            "rate": {
+                "stars": 4,
+                "number": 3000,
+                "booked": "600K+"
+            },
+            "tag": [
+                "tst",
+                "tst",
+                "tst"
+            ],
+            "price": 123,
+            "link": "activity",
+            "id": 1
+        },
+        {
+            "img": "https://res.klook.com/image/upload/fl_lossy.progressive,w_500,h_334,c_fill,q_85/activities/jtjfqspnpjakxriqml5t.webp",
+            "subTxt": "rail passes",
+            "title": "Tokio Disney Resort Park ticket",
+            "rate": {
+                "stars": 5,
+                "number": 3000,
+                "booked": "600K+"
+            },
+            "tag": [
+                "tst",
+                "tst",
+                "tst"
+            ],
+            "price": 123,
+            "id": 2
+        },
+        {
+            "img": "https://res.klook.com/image/upload/fl_lossy.progressive,w_500,h_334,c_fill,q_85/activities/qcoucugdkglkh583tlps.webp",
+            "subTxt": "rail passes",
+            "title": "JR pass for whole japan",
+            "rate": {
+                "stars": 2.5,
+                "number": 3000,
+                "booked": "600K+"
+            },
+            "tag": [
+                "tst",
+                "tst",
+                "tst"
+            ],
+            "price": 123,
+            "id": 4
+        },
+        {
+            "img": "https://res.klook.com/image/upload/fl_lossy.progressive,w_500,h_334,c_fill,q_85/activities/otkoqzovmpjlwkbxcwgs.webp",
+            "subTxt": "rail passes",
+            "title": "JR pass for whole japan",
+            "rate": {
+                "stars": 4,
+                "number": 3000,
+                "booked": "600K+"
+            },
+            "tag": [
+                "tst",
+                "tst",
+                "tst"
+            ],
+            "price": 123,
+            "id": 5
+        },
+        {
+            "img": "",
+            "subTxt": "rail passes",
+            "title": "JR pass for whole japan",
+            "rate": {
+                "stars": 4,
+                "number": 3000,
+                "booked": "600K+"
+            },
+            "tag": [
+                "tst",
+                "tst",
+                "tst"
+            ],
+            "price": 123,
+            "id": 6
+        },
+        {
+            "img": "",
+            "subTxt": "rail passes",
+            "title": "JR pass for whole japan",
+            "rate": {
+                "stars": 4,
+                "number": 3000,
+                "booked": "600K+"
+            },
+            "tag": [
+                "tst",
+                "tst",
+                "tst"
+            ],
+            "price": 123,
+            "id": 7
+        }
+    ]
+}
