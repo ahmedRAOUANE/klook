@@ -1,12 +1,13 @@
 import { CardContent, Typography } from '@mui/joy'
 import React from 'react';
 import RecommendCard from './RecommendCard';
+import { Box } from '@mui/material';
 
 
 
 const HotArea = () => {
   return (
-    <CardContent sx={{
+    <Box sx={{
       backgroundImage: "url(https://res.klook.com/image/upload/v1639474405/osl4fpo0fblk5tgsgfmd.png)",
       backgroundRepeat: "no-repeat",
       padding: "10px",
@@ -22,7 +23,7 @@ const HotArea = () => {
       <RecommendCard />
       <RecommendCard />
       <RecommendCard />
-    </CardContent>
+    </Box>
   )
 }
 

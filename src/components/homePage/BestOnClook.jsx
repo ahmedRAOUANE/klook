@@ -7,13 +7,13 @@ const BestOnClook = () => {
         <Container>
             <Typography gutterBottom component={"h4"} variant='h3' >best on clook</Typography>
             <Grid container spacing={2}>
-                <Grid item xs={10} md={4} margin={"auto"}>
+                <Grid item xs={12} md={4} margin={"auto"}>
                     <HotArea />
                 </Grid>
-                <Grid item xs={10} md={4} margin={"auto"}>
+                <Grid item xs={12} md={4} margin={"auto"}>
                     <HotArea />
                 </Grid>
-                <Grid item xs={10} md={4} margin={"auto"}>
+                <Grid item xs={12} md={4} margin={"auto"}>
                     <HotArea />
                 </Grid>
             </Grid>

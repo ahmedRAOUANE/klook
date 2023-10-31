@@ -41,7 +41,7 @@ const cardContent = (cardInfo) => (
 
 const Cards = ({ cardInfo, lnk }) => {
   return (
-    <Card sx={{ maxWidth: 275, borderRadius: "20px" }}>
+    <Card sx={{ borderRadius: "20px", margin: "auto" }}>
       {lnk ? (
         <Link to={`/${lnk}/${cardInfo.id}`} style={{color: 'black', width: "100%"}}>
           {cardContent(cardInfo)}
