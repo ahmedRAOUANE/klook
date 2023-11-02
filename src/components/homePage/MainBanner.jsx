@@ -1,6 +1,8 @@
 // react 
 import React, {useState, useEffect} from 'react';
-import GetData from "../GetData"
+import useGetData from "../useGetData";
+
+import Loading from './Loading'
 
 // mui components
 import { Container } from '@mui/material';
@@ -20,15 +22,13 @@ const btnStyle = {
 }
 
 const MainBanner = () => {
-  const data = GetData("mainBunner");
+  const data = useGetData("mainBunner");
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const updatedImgs = data.map((img, idx) => ({
+  const updatedImgs = data.data.map((img, idx) => ({
     ...img, 
     active: idx === currentIndex
   }))
-
-  console.log(data);
 
   useEffect(() => {
     const timer = setInterval(() => {

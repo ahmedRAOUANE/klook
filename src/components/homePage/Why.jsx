@@ -1,24 +1,28 @@
 import React from 'react';
 import { Container, Grid, Typography } from "@mui/material"
 import Cards from './Cards';
-import GetData from '../GetData';
+import useGetData from '../useGetData';
+
+import Loading from "./Loading"
 
 const Why = () => {
 
-    const data = GetData("why");
+    const data = useGetData("why");
 
     return (
         <Container sx={{ mb: 6 }}>
             <Typography component={"h2"} variant='h4' my={3}>
                 why choose Klook
             </Typography>
-            <Grid style={{ justifyContent: 'center' }} container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
-                {data.map(card => (
-                    <Grid item xs={8} md={3}>
-                        <Cards cardInfo={card} />
-                    </Grid>
-                ))}
-            </Grid>
+            {data.loading ? <Loading /> : (
+                <Grid style={{ justifyContent: 'center' }} container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+                    {data.data.map((card, idx) => (
+                        <Grid item xs={8} md={3} key={idx}>
+                            <Cards cardInfo={card} />
+                        </Grid>
+                    ))}
+                </Grid>
+            )}
         </Container>
     )
 }

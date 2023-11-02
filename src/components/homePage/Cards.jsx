@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Link } from "react-router-dom";
 
+import Loading from "./Loading"
+
 // mui components
 import {
   CardContent,
@@ -40,15 +42,16 @@ const cardContent = (cardInfo) => (
 )
 
 const Cards = ({ cardInfo, lnk }) => {
-  return (
-    <Card sx={{ borderRadius: "20px", margin: "auto" }}>
-      {lnk ? (
-        <Link to={`/${lnk}/${cardInfo.id}`} style={{color: 'black', width: "100%"}}>
-          {cardContent(cardInfo)}
-        </Link>
-      ) : cardContent(cardInfo)}
-    </Card>
-  )
+  // console.log(cardInfo);
+  return cardInfo === undefined ? <Loading /> : (
+      <Card sx={{ borderRadius: "20px", margin: "auto" }}>
+        {lnk ? (
+          <Link to={`/${lnk}/${cardInfo.id}`} style={{ color: 'black', width: "100%" }}>
+            {cardContent(cardInfo)}
+          </Link>
+        ) : cardContent(cardInfo)}
+      </Card>
+    )
 }
 
 export default Cards
